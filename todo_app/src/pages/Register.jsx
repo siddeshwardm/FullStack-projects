@@ -1,6 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
 
@@ -28,17 +28,31 @@ function Register() {
 
     return (
 
-        <form onSubmit={handleSubmit}>
 
-            <input name="name" placeholder="Name" onChange={handleChange} />
 
-            <input name="email" placeholder="Email" onChange={handleChange} />
+        <div>
+            <form onSubmit={handleSubmit}>
 
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+                <input name="name" placeholder="Name" onChange={handleChange} />
 
-            <button type="submit">Register</button>
+                <input name="email" placeholder="Email" onChange={handleChange} />
 
-        </form>
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+
+                <button type="submit">Register</button>
+
+            </form>
+
+
+            <p style={{ marginTop: "10px" }}>
+
+                Already have an account?{" "}
+                <Link to="/login">
+                    Login
+                </Link>
+
+            </p>
+        </div>
     );
 }
 

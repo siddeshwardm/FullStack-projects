@@ -52,6 +52,24 @@ function Dashboard() {
         fetchTodos();
     };
 
+
+    const updateTodo = async (id, title) => {
+
+        const token = localStorage.getItem("token");
+
+        await API.put(
+            `/todos/${id}`,
+            { title },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        fetchTodos();
+    };
+
     return (
 
         <div>
@@ -67,6 +85,7 @@ function Dashboard() {
                     key={todo.id}
                     todo={todo}
                     deleteTodo={deleteTodo}
+                    updateTodo={updateTodo}
                 />
             ))}
 

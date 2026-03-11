@@ -45,24 +45,24 @@ exports.getTodos = (req, res) => {
 
 exports.updateTodo = (req, res) => {
 
-    const { title, description, status } = req.body;
+    const { title } = req.body;
 
     const sql = `
-  UPDATE todos
-  SET title=?,description=?,status=?
-  WHERE id=? AND user_id=?
+    UPDATE todos
+    SET title=?
+    WHERE id=? AND user_id=?
   `;
 
-    db.query(sql, [title, description, status, req.params.id, req.userId], (err, result) => {
+    db.query(sql, [title, req.params.id, req.userId], (err, result) => {
 
         if (err) {
+            console.error(err);
             return res.status(500).json(err);
         }
 
-        res.json({ message: "Todo updated" });
+        res.json({ message: "Todo updated successfully" });
 
     });
-
 };
 
 
