@@ -1,4 +1,4 @@
-# Full-Stack Todo Application
+# Todo Application
 
 A minimal, secure, and fully functional Full-Stack Todo Application built with **React**, **Vite**, **Express**, **Node.js**, and **MySQL**. It features JWT-based user authentication and CRUD operations for tasks.
 
