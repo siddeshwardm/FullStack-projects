@@ -23,7 +23,7 @@ function Register() {
 
         alert("User Registered");
 
-        navigate("/");
+        navigate("/login");
     };
 
     return (

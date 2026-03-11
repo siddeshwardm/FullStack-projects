@@ -1,31 +1,50 @@
-function TodoItem({ todo, deleteTodo }) {
+import { useState } from "react";
+
+function TodoItem({ todo, deleteTodo, updateTodo }) {
+
+    const [editing, setEditing] = useState(false);
+    const [newTitle, setNewTitle] = useState(todo.title);
+
+    const handleUpdate = () => {
+        updateTodo(todo.id, newTitle);
+        setEditing(false);
+    };
 
     return (
+        <div
+            style={{
+                border: "1px solid #ddd",
+                padding: "10px",
+                marginTop: "10px",
+                display: "flex",
+                justifyContent: "space-between"
+            }}
+        >
 
-        <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            border: "1px solid #ddd",
-            padding: "10px",
-            marginTop: "10px"
-        }}>
+            {editing ? (
+                <input
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                />
+            ) : (
+                <p>{todo.title}</p>
+            )}
 
             <div>
 
-                <h4>{todo.title}</h4>
+                {editing ? (
+                    <button onClick={handleUpdate}>Save</button>
+                ) : (
+                    <button onClick={() => setEditing(true)}>Edit</button>
+                )}
 
-                <p>Status: {todo.status}</p>
+                <button onClick={() => deleteTodo(todo.id)}>
+                    Delete
+                </button>
 
             </div>
 
-            <button
-                onClick={() => deleteTodo(todo.id)}
-            >
-                Delete
-            </button>
-
         </div>
-
     );
 }
 
